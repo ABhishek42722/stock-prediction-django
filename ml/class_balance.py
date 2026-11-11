@@ -4,9 +4,9 @@ TICKERS = [
     # stable large caps
     "AAPL", "MSFT", "JPM", "KO", "PG", "JNJ", "WMT", "XOM", "V", "PEP",
     # growth / tech
-    "NVDA", "AMD", "TSLA", "NFLX", "META", "AMZN", "GOOGL", "CRM", "ADBE", "INTC",
+    "NVDA", "AMD", "TSLA", "NFLX", "AMZN", "GOOGL", "CRM", "ADBE", "INTC",
     # volatile / high-beta
-    "PLTR", "COIN", "RIVN", "UPST", "SNAP", "ROKU", "DKNG", "AFRM", "MRNA", "ENPH",
+    "SNAP", "ROKU", "DKNG", "ENPH" ,
 ]
 THRESHOLDS = [3, 5, 7, 9]
 
