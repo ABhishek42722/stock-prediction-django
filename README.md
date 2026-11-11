@@ -76,6 +76,15 @@ POST /api/predictions/
 }
 ```
 
+
+### Data notes
+
+- **News:** FNSPID (public dated financial news), filtered to 2018-01-01 through 2023. The dataset ends in mid-December 2023.
+- **Prices:** Yahoo Finance via `yfinance`, split- and dividend-adjusted.
+- **Ticker universe:** 23 of the 30 planned tickers. COIN, META, RIVN, PLTR, UPST, AFRM and MRNA have no usable news in FNSPID. I checked all 8,552 symbols in the file. The only near-match, `FB` (Facebook's old symbol), has 433 articles between Feb and Jun 2020, which is too few to use, so META was dropped.
+- **Reproduce the check:** `python ml/check_symbols.py`
+
+
 ## Validation
 
 Invalid data is rejected with a `400` response that names the field.
