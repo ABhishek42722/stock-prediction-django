@@ -5,3 +5,4 @@ __pycache__/
 .env
 .vscode/
 data/
+ml/scrap.py
