@@ -11,7 +11,7 @@ TICKERS = [
 THRESHOLDS = [3, 5, 7, 9]
 
 prices = pd.read_csv("data/prices.csv", header=[0, 1], index_col=0, parse_dates=True,skiprows=[2])
-close=prices["Close"][TICKERS].loc["2018-01-01":"2023-12-31"]
+close=prices["Close"][TICKERS].loc["2018-01-01":"2023-12-10"]
 next_day_return = (close.shift(-1) / close - 1) * 100
 
 total = next_day_return.notna().sum().sum()
