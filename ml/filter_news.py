@@ -15,7 +15,9 @@ TICKERS = [
 ]
 
 START = pd.Timestamp("2018-01-01", tz="UTC")
-END_EXCLUSIVE = pd.Timestamp("2024-01-01", tz="UTC")
+END_EXCLUSIVE = pd.Timestamp("2023-12-11", tz="UTC")
+#cut at 2023-12-11: from Dec 11 FNSPID has reports stamped earlier than the day they describe, 
+# and the file’s last days are nearly empty.
 
 kept = []
 for i, chunk in enumerate(pd.read_csv(RAW, usecols=["Date","Stock_symbol","Article_title"], dtype={"Stock_symbol":str}, chunksize=500000)):  # TODO 2
