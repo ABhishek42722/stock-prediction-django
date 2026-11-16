@@ -3,12 +3,15 @@ import pandas as pd
 # Share of each ticker’s trading days with at least one article. 
 # Weekend and holiday news (9,941 articles, 8.3%) is dropped. 
 # INTC, AMD and KO have about 90%+ coverage. 
-# PG (12%), AMZN (15%) and JNJ, MSFT, GOOGL, JPM and AAPL (under 30%) are thin.
+# PG (12%), AMZN (14.4%) and JNJ, MSFT, GOOGL, JPM and AAPL (under 30%) are thin.
+# The window: 2018-01-01 to 2023-12-10, (unreliable dates from Dec 11)
+# The dropped articles is now: 9,642 (8.1%)
 
 news = pd.read_csv("data/news_filtered.csv", parse_dates=["Date"])
 news["Day"] = news["Date"].dt.date
 
 prices = pd.read_csv("data/prices.csv", header=[0, 1], index_col=0, parse_dates=True, skiprows=[2])
+prices = prices.loc["2018-01-01":"2023-12-10"]
 
 trading_days = set(prices.index.date)
 news_td = news[news["Day"].isin(trading_days)]  
