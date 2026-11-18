@@ -1,7 +1,8 @@
 import pandas as pd
 
 raw = pd.read_csv("data/prices.csv", header=[0, 1], index_col=0, parse_dates=True)
-close = raw["Close"]
+close = raw["Close"].copy()
+close.loc[:"2020-04-23", "DKNG"] = float("nan")
 
 
 def rsi(series, window=14):
@@ -29,6 +30,17 @@ features = pd.DataFrame({
 features = features.dropna()
 features.index.names = ["date", "ticker"]
 
-print(features.shape)
+print("before: ",features.shape)
+
+cut_date = pd.Timestamp("2023-12-11")
+dropped = ["COIN", "META", "RIVN", "PLTR", "UPST", "AFRM", "MRNA"]
+dates=features.index.get_level_values("date")
+tickers=features.index.get_level_values("ticker")
+features=features[(dates<cut_date)&~tickers.isin(dropped)]
+
+print("after: ",features.shape)
+print("dates:", features.index.get_level_values("date").min(),
+      "to", features.index.get_level_values("date").max())
+print("tickers:", features.index.get_level_values("ticker").nunique())
 print(features.head())
 features.to_csv("data/features.csv")
